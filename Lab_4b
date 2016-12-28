@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <iostream>
+
+using namespace std;
+
+struct StMet
+{
+	char nameStM[29];
+	char nameLineStM[40];
+	int NumLineStM;
+};
+struct Area
+{
+	char nameArea[60];
+	StMet stat;
+};
+
+int main(int argc, char* argv[])
+{
+	Area*pG=0;
+	int n;
+	printf_s("n=");
+	scanf_s("%d", &n);
+	pG = (Area *)malloc(n * sizeof(Area));
+	for (int i = 0; i<n; i++)
+	{
+		printf_s("\nArea id number is %d", i + 1);
+		printf_s("\nArea name: ");
+		cin >> pG[i].nameArea;
+		_flushall();
+		printf_s("\nInformation about Metro station in this area: ");
+		printf_s("\nName of Metro station: ");
+		fflush(stdin);
+		cin>>pG[i].stat.nameStM;
+		printf_s("\nNumber of Metro line: ");
+		scanf_s("%d", &pG[i].stat.NumLineStM);
+		printf_s("\nName of Metro line: ");
+		cin>>pG[i].stat.nameLineStM;
+	}
+	for (int i = 0; i<n; i++)
+		printf_s("\n%s %s %d %s",
+			pG[i].nameArea, pG[i].stat.nameStM,
+			pG[i].stat.NumLineStM, pG[i].stat.nameLineStM);
+	char AreaName[49];
+	printf_s("\nArea name: ");
+	fflush(stdin);
+	cin>>AreaName;
+	int k = 0;
+	for (int i = 0; i<n; i++)
+		if (strcmp(AreaName, pG[i].nameArea) == 0)
+			if (pG[i].stat.NumLineStM = 8)
+				k++;
+	if (k) printf_s("Stations on 8 metroline in this area: %d\n", k);
+	else printf_s("Not found\n");
+	system("pause");
+	free(pG);
+}
